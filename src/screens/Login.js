@@ -1,10 +1,34 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, TextInput, Button } from 'react-native';
+import * as userService from '../services/UserService'
 
 export default class Login extends React.Component {
-	goToSignup = () => {
+	constructor(props) {
+		super(props)
+		this.state = {
+			username: '',
+			password: ''
+		}
+	}
+
+	goToSignup = async () => {
 		console.log('Going to Signup Page');
-		this.props.navigation.navigate('Signup', {});
+		console.log(this.state.username);
+		console.log(this.state.password);
+
+		const response = await userService.authenticateUser(
+			this.state.username,
+			this.state.password
+		);
+
+		if (response.resp) {
+			console.log('Invalid Credentials');
+		} else {
+			this.props.navigation.navigate('Home', {
+				username: this.state.username, 
+				password: this.state.password
+			});
+		}
 	}
 
 	render() {
@@ -24,11 +48,14 @@ export default class Login extends React.Component {
 						placeholder="Username or Email"
 						placeholderTextColor="rgba(255, 255, 255, 0.7)"
 						style={styles.input}
+						onChangeText={(text) => this.setState({username: text})}
 					/>
 					<TextInput 
 						placeholder="Password"
+						secureTextEntry={true}
 						placeholderTextColor="rgba(255, 255, 255, 0.7)"
 						style={styles.input}
+						onChangeText={(text) => this.setState({password: text})}
 					/>
 					<Button
 						style={styles.button}
