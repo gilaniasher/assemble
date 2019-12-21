@@ -1,0 +1,11 @@
+{
+  "name": "assemblenodeserver",
+  "version": "1.0.0",
+  "description": "Assemble Node Server code. This code will be uploaded to AWS Lambda which is triggered by REST API calls through API Gateway.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
