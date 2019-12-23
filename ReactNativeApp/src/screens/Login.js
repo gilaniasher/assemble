@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, TextInput, Button } from 'react-native';
-import * as userService from '../services/UserService'
+import * as userService from '../services/HandleUserRequest'
 
 export default class Login extends React.Component {
 	constructor(props) {
@@ -16,12 +16,14 @@ export default class Login extends React.Component {
 		console.log(this.state.username);
 		console.log(this.state.password);
 
-		const response = await userService.authenticateUser(
+		const response = await userService.validateUser(
 			this.state.username,
 			this.state.password
 		);
 
-		if (response.resp) {
+		console.log(response);
+
+		if (response == null) {
 			console.log('Invalid Credentials');
 		} else {
 			this.props.navigation.navigate('Home', {
