@@ -11,7 +11,7 @@ Resources:
   CreateUserFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: CreateUser/
+      CodeUri: create-user/
       Handler: index.handler
       Runtime: nodejs10.x
       Events:
