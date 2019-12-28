@@ -4,19 +4,16 @@ const session = driver.session();
 
 exports.handler = async (event) => {
     let univ;
-    
+
     session
-        .run(`MATCH (n:User) RETURN n`)
+        .run(`CREATE (n:User {name: 'Lambda Test'})`)
         .then(function (result) {
-            result.records.forEach(function (record) {
-                console.log(record._fields[0].properties);
-                univ = record._fields[0].properties;
-            });
+            console.log('The function ran');
+            console.log(JSON.stringify(result));
         })
-        .catch(function (err) {
-            console.log('ERROR WITH NEO4J CALL');
-            console.log(err);
-            univ = err;
+        .catch(function (error) {
+            console.log('The function did not run');
+            console.log(JSON.stringify(error));
         });
 
     const response = {
