@@ -1,11 +1,18 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import AppIntro from '../screens/AppIntro';
 import Home from '../screens/Home';
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
 		
 const navigator = createStackNavigator(
 	{
+		AppIntro: {
+			screen: AppIntro,
+			navigationOptions: {
+				header: null
+			}
+		},
 		Home: { 
 			screen: Home,
 			navigationOptions: {
@@ -26,7 +33,7 @@ const navigator = createStackNavigator(
 		}
 	},
 	{
-		initialRouteName: 'Login'
+		initialRouteName: 'AppIntro'
 	}
 );
 

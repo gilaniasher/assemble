@@ -13,24 +13,12 @@ export default class Login extends React.Component {
 
 	goToSignup = async () => {
 		console.log('Going to Signup Page');
+		this.props.navigation.navigate('Signup');
+	}
+
+	verifyUser = async () => {
 		console.log(this.state.username);
 		console.log(this.state.password);
-
-		const response = await userService.validateUser(
-			this.state.username,
-			this.state.password
-		);
-
-		console.log(response);
-
-		if (response == null) {
-			console.log('Invalid Credentials');
-		} else {
-			this.props.navigation.navigate('Home', {
-				username: this.state.username, 
-				password: this.state.password
-			});
-		}
 	}
 
 	render() {
@@ -62,13 +50,14 @@ export default class Login extends React.Component {
 					<Button
 						style={styles.button}
 						title="Log in"
-						onPress={this.goToSignup}
+						onPress={this.verifyUser}
 					/>
 				</View>
 
 				<Button
 					title="Sign up"
 					onPress={this.goToSignup}
+					style={styles.button}
 				/>
 
 			</View>
@@ -108,6 +97,6 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 18
 	},
 	button: {
-		width: 20
+		marginBottom: 30
 	}
 });
