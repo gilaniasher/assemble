@@ -1,6 +1,6 @@
 import React from 'react';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, AsyncStorage, ActivityIndicator } from 'react-native';
 import Login from './Login';
 
 export default class AppIntro extends React.Component {
@@ -8,19 +8,34 @@ export default class AppIntro extends React.Component {
         super(props);
 
         this.state = {
-            showMainApp: false
+            showMainApp: false,
+            loading: true
         }
     }
 
-    onDoneAllSlides = () => {
-        this.setState({ showMainApp: true});
+    componentDidMount() {
+        AsyncStorage.getItem('first-time').then((value) => { 
+            this.setState({ showMainApp: !!value, loading: false });
+            this.props.navigate('Login');
+        });
     }
 
-    onSkipSlides = () => {
-        this.setState({ showMainApp: true});
+    _onDone = () => {
+        AsyncStorage.setItem('first-time', 'true').then(() => {
+            this.setState({ showMainApp: true });
+            this.props.navigate('Login');
+        });
+    }
+
+    _onSkip = () => {
+        AsyncStorage.setItem('first-time', 'true').then(() => {
+            this.setState({ showMainApp: true });
+        });
     }
 
     render() {
+        if (this.state.loading) return <ActivityIndicator size='large' />
+
         if (this.state.showMainApp) {
             return (
                 <Login/>
@@ -29,9 +44,9 @@ export default class AppIntro extends React.Component {
             return(
                 <AppIntroSlider
                     slides={slides}
-                    onDone={this.onDoneAllSlides}
+                    onDone={this._onDone}
                     showSkipButton={true}
-                    onSkip={this.onSkipSlides}
+                    onSkip={this._onSkip}
                 />
             );
         }
