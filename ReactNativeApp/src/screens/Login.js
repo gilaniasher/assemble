@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text, TextInput, Button } from 'react-native';
-import * as userService from '../services/HandleUserRequest'
+import { StyleSheet, View, Image, Text, Button, ImageBackground } from 'react-native';
+import * as userService from '../services/HandleUserRequest';
+import { TextField } from 'react-native-material-textfield';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class Login extends React.Component {
 	constructor(props) {
@@ -35,6 +37,10 @@ export default class Login extends React.Component {
 
 	render() {
 		return (
+			<ImageBackground
+				source={require('../images/team_background.jpg')}
+				style={{width: '100%', height: '100%'}}
+			>
 			<View style={styles.container}>
 				<View style={styles.logoContainer}>
 					<Image
@@ -45,18 +51,24 @@ export default class Login extends React.Component {
 					<Text style={styles.title}>An app testing react native</Text>
 				</View>
 
+				<Icon
+					name='email'
+					size={30}
+					color='rgba(255, 255, 255, 0.7)'
+				/>
+
 				<View style={styles.formContainer}>
-					<TextInput 
-						placeholder="Username or Email"
-						placeholderTextColor="rgba(255, 255, 255, 0.7)"
-						style={styles.input}
+					<TextField
+						label='Email'
+						textColor='rgba(255, 255, 255, 0.7)'
+						tintColor='rgba(255, 255, 255, 0.7)'
 						onChangeText={(text) => this.setState({username: text})}
 					/>
-					<TextInput 
-						placeholder="Password"
+					<TextField
+						label='Password'
 						secureTextEntry={true}
-						placeholderTextColor="rgba(255, 255, 255, 0.7)"
-						style={styles.input}
+						textColor='rgba(255, 255, 255, 0.7)'
+						tintColor='rgba(255, 255, 255, 0.7)'
 						onChangeText={(text) => this.setState({password: text})}
 					/>
 					<Button
@@ -70,8 +82,8 @@ export default class Login extends React.Component {
 					title="Sign up"
 					onPress={this.goToSignup}
 				/>
-
 			</View>
+			</ImageBackground>
 		);
 	}
 }
@@ -79,7 +91,8 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#725AC1'
+		backgroundColor: '#725AC1',
+		opacity: 1.0
 	},
 	logoContainer: {
 		alignItems: 'center',
@@ -99,13 +112,6 @@ const styles = StyleSheet.create({
 	},
 	formContainer: {
 		padding: 20
-	},
-	input: {
-		height: 40,
-		backgroundColor: 'rgba(255, 255, 255, 0.2)',
-		marginBottom: 20,
-		color: '#FFF',
-		paddingHorizontal: 18
 	},
 	button: {
 		width: 20
