@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, Button, ImageBackground } from 'react-native';
 import * as userService from '../services/HandleUserRequest';
-import { TextField } from 'react-native-material-textfield';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import TextIconForm from '../components/TextIconForm';
 
 export default class Login extends React.Component {
 	constructor(props) {
@@ -49,37 +48,31 @@ export default class Login extends React.Component {
 						source={require('../images/logo.png')}
 					/>
 
-					<Text style={styles.title}>An app testing react native</Text>
+					<Text style={styles.title}>Find the right partners for your next project</Text>
 				</View>
 
-				<Icon
-					name='email'
-					size={30}
-					color='rgba(255, 255, 255, 0.7)'
-				/>
-
 				<View style={styles.formContainer}>
-					<TextField
+					<TextIconForm
+						iconName='email'
 						label='Email'
-						textColor='rgba(255, 255, 255, 0.7)'
-						tintColor='rgba(255, 255, 255, 0.7)'
 						onChangeText={(text) => this.setState({username: text})}
 					/>
-					<TextField
+
+					<TextIconForm
 						label='Password'
 						secureTextEntry={true}
-						textColor='rgba(255, 255, 255, 0.7)'
-						tintColor='rgba(255, 255, 255, 0.7)'
 						onChangeText={(text) => this.setState({password: text})}
-					/>
-					<Button
-						style={styles.button}
-						title="Log in"
-						onPress={this.goToSignup}
 					/>
 				</View>
 
 				<Button
+					style={styles.button}
+					title="Log in"
+					onPress={this.goToSignup}
+				/>
+
+				<Button
+					style={styles.button}
 					title="Sign up"
 					onPress={this.goToSignup}
 				/>
@@ -93,10 +86,11 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
 	overlay: {
 		flex: 1,
-		backgroundColor: 'rgba(114, 90, 193, .8)',
+		backgroundColor: 'rgba(114, 90, 193, 0.8)',
 	},
 	container: {
 		flex: 1,
+		padding: 20
 	},
 	logoContainer: {
 		alignItems: 'center',
@@ -115,9 +109,11 @@ const styles = StyleSheet.create({
 		opacity: 0.8
 	},
 	formContainer: {
+		flex: 3,
 		padding: 20
 	},
 	button: {
-		width: 20
+		width: 20,
+		marginVertical: 10
 	}
 });
