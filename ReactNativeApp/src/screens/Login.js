@@ -41,6 +41,7 @@ export default class Login extends React.Component {
 				source={require('../images/team_background.jpg')}
 				style={{width: '100%', height: '100%'}}
 			>
+			<View style={styles.overlay}>
 			<View style={styles.container}>
 				<View style={styles.logoContainer}>
 					<Image
@@ -83,16 +84,19 @@ export default class Login extends React.Component {
 					onPress={this.goToSignup}
 				/>
 			</View>
+			</View>
 			</ImageBackground>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
+	overlay: {
+		flex: 1,
+		backgroundColor: 'rgba(114, 90, 193, .8)',
+	},
 	container: {
 		flex: 1,
-		backgroundColor: '#725AC1',
-		opacity: 1.0
 	},
 	logoContainer: {
 		alignItems: 'center',
