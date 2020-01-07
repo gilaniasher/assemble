@@ -2,28 +2,40 @@ import React from 'react';
 import { StyleSheet, View, Image, Text, Button, ImageBackground } from 'react-native';
 import * as userService from '../services/HandleUserRequest';
 import TextIconForm from '../components/TextIconForm';
+import SpinnerButton from 'react-native-spinner-button';
 
 export default class Login extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			username: '',
-			password: ''
+			password: '',
+			defaultLoading: false
 		}
 	}
 
-	goToSignup = async () => {
-		console.log('Going to Signup Page');
+	userLogin = async () => {
+		this.setState({ defaultLoading: true});
+			
+		console.log('Verifying user login');
 		console.log(this.state.username);
 		console.log(this.state.password);
 
+		/*
 		const response = await userService.validateUser(
 			this.state.username,
 			this.state.password
-		);
+		);*/
 
-		console.log(response);
+		// Mock code
+		setTimeout( () => {
+			this.setState({ defaultLoading: false});
+		}, 3000);
 
+		//console.log(response);
+		//this.setState({ defaultLoading: false});
+
+		/*
 		if (response == null) {
 			console.log('Invalid Credentials');
 		} else {
@@ -31,7 +43,11 @@ export default class Login extends React.Component {
 				username: this.state.username, 
 				password: this.state.password
 			});
-		}
+		}*/
+	}
+
+	goToSignup = async () => {
+		console.log('Going to Signup page. CURRENTLY UNIMPLEMENTED');
 	}
 
 	render() {
@@ -65,17 +81,14 @@ export default class Login extends React.Component {
 					/>
 				</View>
 
-				<Button
-					style={styles.button}
-					title="Log in"
-					onPress={this.goToSignup}
-				/>
-
-				<Button
-					style={styles.button}
-					title="Sign up"
-					onPress={this.goToSignup}
-				/>
+				<SpinnerButton
+					buttonStyle={styles.button}
+					isLoading={this.state.defaultLoading}
+					onPress={this.userLogin}
+					indicatorCount={10}
+				>
+					<Text>Log in</Text>
+				</SpinnerButton>
 			</View>
 			</View>
 			</ImageBackground>
@@ -113,7 +126,6 @@ const styles = StyleSheet.create({
 		padding: 20
 	},
 	button: {
-		width: 20,
 		marginVertical: 10
 	}
 });
