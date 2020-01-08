@@ -90,6 +90,11 @@ export default class Login extends React.Component {
 				>
 					<Text style={styles.buttonText}>Log in</Text>
 				</SpinnerButton>
+
+				<Text style={styles.signupTextContainer}>
+					<Text>Don't have an account? </Text>
+					<Text style={styles.signupText} onPress={this.goToSignup}>Sign up!</Text>
+				</Text>
 			</View>
 			</View>
 			</ImageBackground>
@@ -120,7 +125,8 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 		width: 160,
 		textAlign: 'center',
-		opacity: 0.8
+		opacity: 0.8,
+		fontSize: 16
 	},
 	formContainer: {
 		flex: 3,
@@ -135,5 +141,15 @@ const styles = StyleSheet.create({
 	buttonText: {
 		color: '#FFF',
 		opacity: 0.8
+	},
+	signupTextContainer: {
+		color: '#FFF',
+		opacity: 0.8,
+		textAlign: 'center',
+		marginTop: 10
+	},
+	signupText: {
+		color: 'rgba(0, 225, 121, 1.0)'
 	}
+
 });
