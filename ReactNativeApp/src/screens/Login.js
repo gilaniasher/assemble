@@ -64,7 +64,7 @@ export default class Login extends React.Component {
 						source={require('../images/logo.png')}
 					/>
 
-					<Text style={styles.title}>Find the right partners for your next project</Text>
+					<Text style={styles.title}>Assemble your team today</Text>
 				</View>
 
 				<View style={styles.formContainer}>
@@ -75,6 +75,7 @@ export default class Login extends React.Component {
 					/>
 
 					<TextIconForm
+						iconName='lock'
 						label='Password'
 						secureTextEntry={true}
 						onChangeText={(text) => this.setState({password: text})}
@@ -87,7 +88,7 @@ export default class Login extends React.Component {
 					onPress={this.userLogin}
 					indicatorCount={10}
 				>
-					<Text>Log in</Text>
+					<Text style={styles.buttonText}>Log in</Text>
 				</SpinnerButton>
 			</View>
 			</View>
@@ -126,6 +127,13 @@ const styles = StyleSheet.create({
 		padding: 20
 	},
 	button: {
-		marginVertical: 10
+		marginVertical: 10,
+		borderRadius: 30,
+		backgroundColor: '#5636E9',
+		opacity: 0.8
+	},
+	buttonText: {
+		color: '#FFF',
+		opacity: 0.8
 	}
 });

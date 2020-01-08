@@ -16,7 +16,8 @@ export default class TextFormWithIcon extends React.Component {
                 <TextField
                     label={this.props.label}
                     textColor={this.props.textColor ? this.props.textColor : 'rgba(255, 255, 255, 0.7)'}
-                    tintColor={this.props.tintColor ? this.props.tintColor : 'rgba(255, 255, 255, 0.7)'}
+                    tintColor={this.props.tintColor ? this.props.tintColor : 'rgba(0, 225, 121, 1.0)'}
+                    baseColor={this.props.baseColor ? this.props.baseColor : 'rgba(255, 255, 255, 0.7)'}
                     secureTextEntry={Boolean(this.props.secureTextEntry)}
                     onChangeText={this.props.onChangeText}
                     containerStyle={{ paddingLeft: 43 }}
