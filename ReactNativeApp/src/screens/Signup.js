@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
 	},
 	signupButtonText: {
 		color: '#FFF',
-		opacity: 0.8
+		opacity: 0.8,
+		fontSize: 18
 	}
 });

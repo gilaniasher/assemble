@@ -94,7 +94,7 @@ export default class Login extends React.Component {
 					onPress={this.userLogin}
 					indicatorCount={10}
 				>
-					<Text style={styles.buttonText}>Log in</Text>
+					<Text style={styles.buttonText}>Log in!</Text>
 				</SpinnerButton>
 
 				<Text style={styles.signupTextContainer}>
@@ -146,7 +146,8 @@ const styles = StyleSheet.create({
 	},
 	buttonText: {
 		color: '#FFF',
-		opacity: 0.8
+		opacity: 0.8,
+		fontSize: 18
 	},
 	signupTextContainer: {
 		color: '#FFF',
