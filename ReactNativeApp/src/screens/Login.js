@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text, Button, ImageBackground } from 'react-native';
+import { StyleSheet, View, Image, Text, ImageBackground } from 'react-native';
 import * as userService from '../services/HandleUserRequest';
 import TextIconForm from '../components/TextIconForm';
 import SpinnerButton from 'react-native-spinner-button';
@@ -7,6 +7,7 @@ import SpinnerButton from 'react-native-spinner-button';
 export default class Login extends React.Component {
 	constructor(props) {
 		super(props)
+
 		this.state = {
 			username: '',
 			password: '',
@@ -47,7 +48,12 @@ export default class Login extends React.Component {
 	}
 
 	goToSignup = async () => {
-		console.log('Going to Signup page. CURRENTLY UNIMPLEMENTED');
+		console.log('Going to Signup page');
+
+		this.props.navigation.navigate('Signup', {
+			username: this.state.username
+		});
+
 	}
 
 	render() {

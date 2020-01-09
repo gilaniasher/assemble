@@ -3,6 +3,27 @@ import { StyleSheet, View, TextInput } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+/**
+ * This is a component that is a stylized icon which is left adjacent to
+ * a material text field which are stylized to match the color theme of this
+ * app. 
+ * 
+ * The only vector icon import is the Material Community Icons 
+ * so all icon names must be from there.
+ * 
+ * Icon Props:
+ * iconName - Icon name from Material Community Icons. Default is email.
+ * iconSize - Size of icon. Default 30.
+ * iconColor - Defaults to white with opacity 0.7
+ * 
+ * TextField Props:
+ * label - Text field label
+ * textColor - Default white
+ * tintColor - Default green
+ * baseColor - Default white
+ * secureTextEntry - Default false
+ * onChangeText - Required function
+ */
 export default class TextFormWithIcon extends React.Component {
     render() {
         return (
