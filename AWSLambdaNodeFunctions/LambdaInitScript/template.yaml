@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  AuthenticateUser for Assemble
+
+Resources:
+  AuthenticateUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: authenticate-user/
+      Handler: index.handler
+      Runtime: nodejs10.x
+      Events:
+        AuthenticateUser:
+          Type: Api
+          Properties:
+            Path: /AuthenticateUser
+            Method: post
+
+Outputs:
+  AuthenticateUserApi:
+    Description: "API Gateway AuthenticateUser for Assemble"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+  AuthenticateUserFunction:
+    Description: "AuthenticateUser Lambda Function ARN"
+    Value: !GetAtt AuthenticateUserFunction.Arn
+  AuthenticateUserRequestIamRole:
+    Description: "Implicit IAM Role created for AuthenticateUser Request function"
+    Value: !GetAtt AuthenticateUserFunctionRole.Arn
