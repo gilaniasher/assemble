@@ -1,7 +1,7 @@
 {
   "name": "createuserassemble",
   "version": "1.0.0",
-  "description": "Lambda function for creating an Assemble user",
+  "description": "Lambda function CreateUser for Assemble",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,5 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "neo4j-driver": "*"
   }
 }

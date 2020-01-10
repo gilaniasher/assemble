@@ -1,11 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  CreateUser
-  
-Globals:
-  Function:
-    Timeout: 3
+  CreateUser for Assemble
 
 Resources:
   CreateUserFunction:
@@ -15,7 +11,7 @@ Resources:
       Handler: index.handler
       Runtime: nodejs10.x
       Events:
-        UserInfo:
+        CreateUser:
           Type: Api
           Properties:
             Path: /CreateUser
@@ -23,11 +19,11 @@ Resources:
 
 Outputs:
   CreateUserApi:
-    Description: "API Gateway create user for Assemble"
+    Description: "API Gateway CreateUser for Assemble"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
-  HandleUserRequestFunction:
-    Description: "Create User Lambda Function ARN"
+  CreateUserFunction:
+    Description: "CreateUser Lambda Function ARN"
     Value: !GetAtt CreateUserFunction.Arn
-  HandleUserRequestIamRole:
-    Description: "Implicit IAM Role created for Create User Request function"
+  CreateUserRequestIamRole:
+    Description: "Implicit IAM Role created for CreateUser Request function"
     Value: !GetAtt CreateUserFunctionRole.Arn
