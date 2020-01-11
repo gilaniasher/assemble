@@ -1,9 +1,22 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  AuthenticateUser for Assemble
+  Assemble Lambda Function Backend
 
 Resources:
+  CreateUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: create-user/
+      Handler: index.handler
+      Runtime: nodejs10.x
+      Events:
+        CreateUser:
+          Type: Api
+          Properties:
+            Path: /CreateUser
+            Method: post
+  
   AuthenticateUserFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -18,6 +31,16 @@ Resources:
             Method: post
 
 Outputs:
+  CreateUserApi:
+    Description: "API Gateway CreateUser for Assemble"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+  CreateUserFunction:
+    Description: "CreateUser Lambda Function ARN"
+    Value: !GetAtt CreateUserFunction.Arn
+  CreateUserRequestIamRole:
+    Description: "Implicit IAM Role created for CreateUser Request function"
+    Value: !GetAtt CreateUserFunctionRole.Arn
+  
   AuthenticateUserApi:
     Description: "API Gateway AuthenticateUser for Assemble"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
