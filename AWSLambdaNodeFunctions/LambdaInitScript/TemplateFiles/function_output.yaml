@@ -1,0 +1,9 @@
+AuthenticateUserApi:
+  Description: "API Gateway AuthenticateUser for Assemble"
+  Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+AuthenticateUserFunction:
+  Description: "AuthenticateUser Lambda Function ARN"
+  Value: !GetAtt AuthenticateUserFunction.Arn
+AuthenticateUserRequestIamRole:
+  Description: "Implicit IAM Role created for AuthenticateUser Request function"
+  Value: !GetAtt AuthenticateUserFunctionRole.Arn

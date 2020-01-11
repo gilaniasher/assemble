@@ -1,0 +1,12 @@
+AuthenticateUserFunction:
+  Type: AWS::Serverless::Function
+  Properties:
+    CodeUri: authenticate-user/
+    Handler: index.handler
+    Runtime: nodejs10.x
+    Events:
+      AuthenticateUser:
+        Type: Api
+        Properties:
+          Path: /AuthenticateUser
+          Method: post
