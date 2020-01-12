@@ -1,7 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: 'AuthenticateUser for Assemble'
-
+Description: Assemble Lambda Function Backend
 Resources:
   AuthenticateUserFunction:
     Type: AWS::Serverless::Function
@@ -15,14 +14,13 @@ Resources:
           Properties:
             Path: /AuthenticateUser
             Method: post
-
 Outputs:
   AuthenticateUserApi:
-    Description: "API Gateway AuthenticateUser for Assemble"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+    Description: API Gateway AuthenticateUser for Assemble
+    Value: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
   AuthenticateUserFunction:
-    Description: "AuthenticateUser Lambda Function ARN"
-    Value: !GetAtt AuthenticateUserFunction.Arn
+    Description: AuthenticateUser Lambda Function ARN
+    Value: AuthenticateUserFunction.Arn
   AuthenticateUserRequestIamRole:
-    Description: "Implicit IAM Role created for AuthenticateUser Request function"
-    Value: !GetAtt AuthenticateUserFunctionRole.Arn
+    Description: Implicit IAM Role created for AuthenticateUser Request function
+    Value: AuthenticateUserFunctionRole.Arn

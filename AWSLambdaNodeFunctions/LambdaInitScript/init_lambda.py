@@ -1,9 +1,25 @@
+'''
+This script takes care of creating a new AWS Lambda function
+Creates a folder with an index.js and a package.json file
+Also updates the template.yaml file (or creates a new one if none is found in current directory)
+
+Instructions:
+pip install oyaml
+Navigate to the directory where you want to create the Lambda function
+python '.../LambdaInitScript/init_lambda.py'
+
+You can then run your function by running: 
+sam local invoke {AuthenticateUserFunction}
+
+Or host a local server accepting the endpoints specified in the template.yaml file with:
+sam local start-api
+'''
+
 import re
 import os
 import sys
 from shutil import copyfile
 import oyaml as yaml
-from collections import OrderedDict
 
 # Get fn name, http verb, fn uri, and script directory
 fn_name = input('Enter the name of the function in camelcase (e.g AuthenticateUser): ')

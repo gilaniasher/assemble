@@ -1,7 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Assemble Lambda Function Backend
-
 Resources:
   CreateUserFunction:
     Type: AWS::Serverless::Function
@@ -15,7 +14,6 @@ Resources:
           Properties:
             Path: /CreateUser
             Method: post
-  
   AuthenticateUserFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -28,24 +26,22 @@ Resources:
           Properties:
             Path: /AuthenticateUser
             Method: post
-
 Outputs:
   CreateUserApi:
-    Description: "API Gateway CreateUser for Assemble"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+    Description: API Gateway CreateUser for Assemble
+    Value: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
   CreateUserFunction:
-    Description: "CreateUser Lambda Function ARN"
-    Value: !GetAtt CreateUserFunction.Arn
+    Description: CreateUser Lambda Function ARN
+    Value: CreateUserFunction.Arn
   CreateUserRequestIamRole:
-    Description: "Implicit IAM Role created for CreateUser Request function"
-    Value: !GetAtt CreateUserFunctionRole.Arn
-  
+    Description: Implicit IAM Role created for CreateUser Request function
+    Value: CreateUserFunctionRole.Arn
   AuthenticateUserApi:
-    Description: "API Gateway AuthenticateUser for Assemble"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+    Description: API Gateway AuthenticateUser for Assemble
+    Value: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
   AuthenticateUserFunction:
-    Description: "AuthenticateUser Lambda Function ARN"
-    Value: !GetAtt AuthenticateUserFunction.Arn
+    Description: AuthenticateUser Lambda Function ARN
+    Value: AuthenticateUserFunction.Arn
   AuthenticateUserRequestIamRole:
-    Description: "Implicit IAM Role created for AuthenticateUser Request function"
-    Value: !GetAtt AuthenticateUserFunctionRole.Arn
+    Description: Implicit IAM Role created for AuthenticateUser Request function
+    Value: AuthenticateUserFunctionRole.Arn
