@@ -3,14 +3,32 @@ const driver = neo4j.driver('bolt://assemble-neo4j.ml', neo4j.auth.basic('neo4j'
 const session = driver.session();
 
 exports.handler = async (event, context) => {
+    let name = event.queryStringParameters.name;
+    let email = event.queryStringParameters.email;
+    let passHash = event.queryStringParameters.passHash;
+
+    if (name == null || email == null || passHash == null) {
+        return {
+            'statusCode': 400,
+            'error': 'A function parameter was missing'
+        }
+    }
+
     return session
-        .run(`CREATE (n:User {name: 'Lambda Test'})`)
+        .run(
+            `CREATE (:User {
+                name: '${name}',
+                email: '${email}',
+                passHash: '${passHash}'
+            })`
+        )
         .then(() => {
             session.close();
             driver.close();
 
             return {
-                'statusCode': 200
+                'statusCode': 200,
+                'body': 'User created'
             }
         })
         .catch((err) => {
@@ -19,7 +37,8 @@ exports.handler = async (event, context) => {
             driver.close();
 
             return {
-                'statusCode': 400
+                'statusCode': 400,
+                'error': JSON.stringify(err)
             }
         })
 };
