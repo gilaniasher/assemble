@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from 'react-native-bcrypt';
 const endpoint = 'http://127.0.0.1:3000';
 
 export const createUser = async (name, email, password) => {
