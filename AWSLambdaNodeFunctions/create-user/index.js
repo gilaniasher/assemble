@@ -10,7 +10,7 @@ exports.handler = async (event, context) => {
     if (name == null || email == null || passHash == null) {
         return {
             'statusCode': 400,
-            'error': 'A function parameter was missing'
+            'error': 'One field was left blank'
         }
     }
 

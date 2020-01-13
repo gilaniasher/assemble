@@ -1,15 +1,22 @@
-const endpoint = 'https://5rkuwffbv7.execute-api.us-east-2.amazonaws.com/default';
+import bcrypt from 'bcryptjs';
+const endpoint = 'http://127.0.0.1:3000';
 
-export const validateUser = async (username, password) => {
-    try {
-        const response = await fetch(
-            `http://${endpoint}/userinfo?username=${username}&password=${password}`,
+export const createUser = async (name, email, password) => {
+    // Use bcrypt to hash the password with 10 rounds of salt
+    const res = await bcrypt.hash(password, 10, function(err, passHash) {
+        console.log('passHash: ' + passHash);
+
+        return fetch(
+            `${endpoint}/CreateUser?name=${name}&email=${email}&passHash=${passHash}`,
             {method: 'POST'}
         );
-
-        const json = await response.json();
-        return json;
-    } catch (error) {
-        console.log(error);
+    });
+    
+    if (res.statusCode === '200') {
+        console.log('User created succesfully');
+        return '200';
+    } else {
+        console.log(res.error);
+        return res.error;
     }
-};
+}

@@ -11,9 +11,6 @@ export default class Home extends React.Component {
 				<Text>
 					username: {navigation.getParam('username')}
 				</Text>
-				<Text>
-					password: {navigation.getParam('password')}
-				</Text>
 			</View>
 		);
 	}

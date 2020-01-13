@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, ImageBackground } from 'react-native';
-import * as userService from '../services/HandleUserRequest';
 import TextIconForm from '../components/TextIconForm';
 import SpinnerButton from 'react-native-spinner-button';
 

@@ -1,3 +1,4 @@
+import * as userRequest from '../services/HandleUserRequest';
 import React from 'react';
 import { View, ImageBackground, StyleSheet, Text } from 'react-native';
 import TextIconForm from '../components/TextIconForm';
@@ -50,9 +51,19 @@ export default class Signup extends React.Component {
 		console.log('Doing normal signup. UNIMPLEMENTED');
 		this.setState({ normalSignupLoading: true });
 
-		setTimeout( () => {
-			this.setState({ normalSignupLoading: false});
-		}, 3000);
+		const res = await userRequest.createUser(
+			this.state.name, 
+			this.state.email, 
+			this.state.password
+		);
+
+		this.setState({ normalSignupLoading: false });
+
+		if (res === '200') {
+			this.props.navigation.navigate('Home', { username: this.state.username });
+		} else {
+			console.log('Toast message: ' + res);
+		}
 	}
 
 	render() {
