@@ -10,7 +10,7 @@ exports.handler = async (event, context) => {
     if (name == null || email == null || passHash == null) {
         return {
             'statusCode': 400,
-            'error': 'One field was left blank'
+            'error': JSON.stringify('One field was left blank')
         }
     }
 
@@ -28,7 +28,7 @@ exports.handler = async (event, context) => {
 
             return {
                 'statusCode': 200,
-                'body': 'User created'
+                'body': JSON.stringify('User created')
             }
         })
         .catch((err) => {
