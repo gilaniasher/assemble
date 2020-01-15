@@ -1,3 +1,4 @@
+import * as userRequest from '../services/HandleUserRequest';
 import React from 'react';
 import { StyleSheet, View, Image, Text, ImageBackground } from 'react-native';
 import TextIconForm from '../components/TextIconForm';
@@ -8,7 +9,7 @@ export default class Login extends React.Component {
 		super(props)
 
 		this.state = {
-			username: '',
+			email: '',
 			password: '',
 			defaultLoading: false
 		}
@@ -18,39 +19,30 @@ export default class Login extends React.Component {
 		this.setState({ defaultLoading: true});
 			
 		console.log('Verifying user login');
-		console.log(this.state.username);
+		console.log(this.state.email);
 		console.log(this.state.password);
 
-		/*
-		const response = await userService.validateUser(
-			this.state.username,
+		const res = await userService.validateUser(
+			this.state.email,
 			this.state.password
-		);*/
+		);
 
-		// Mock code
-		setTimeout( () => {
-			this.setState({ defaultLoading: false});
-		}, 3000);
+		this.setState({ defaultLoading: false});
 
-		//console.log(response);
-		//this.setState({ defaultLoading: false});
-
-		/*
-		if (response == null) {
-			console.log('Invalid Credentials');
-		} else {
+		if (res === '200') {
 			this.props.navigation.navigate('Home', {
-				username: this.state.username, 
-				password: this.state.password
+				email: this.state.email
 			});
-		}*/
+		} else {
+			console.log('Toast message: ' + res);
+		}
 	}
 
 	goToSignup = async () => {
 		console.log('Going to Signup page');
 
 		this.props.navigation.navigate('Signup', {
-			username: this.state.username
+			email: this.state.email
 		});
 
 	}
@@ -76,7 +68,7 @@ export default class Login extends React.Component {
 					<TextIconForm
 						iconName='email'
 						label='Email'
-						onChangeText={(text) => this.setState({username: text})}
+						onChangeText={(text) => this.setState({email: text})}
 					/>
 
 					<TextIconForm

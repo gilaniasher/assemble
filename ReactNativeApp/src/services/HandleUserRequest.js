@@ -35,3 +35,26 @@ export const createUser = async (name, email, password) => {
         return res.error;
     }
 }
+
+export const validateUser = async (email, password) => {
+    // Make API call to get user's passHash if email exists in database
+    let res = await fetch(
+        `${endpoint}/AuthenticateUser?email=${email}`,
+        {method: 'POST'}
+    );
+
+    let json_res;
+
+    if (res.status === 200) {
+        json_res = await res.json();
+    } else {
+        return 'Email not found';
+    }
+
+    // Verify passHash on client side to prevent sending plaintext password through network
+    if (bcrypt.compareSync(password, json_res.passHash)) {
+        return '200';
+    } else {
+        return 'Invalid password';
+    }
+}
