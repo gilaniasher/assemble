@@ -1,22 +1,37 @@
 import bcrypt from 'react-native-bcrypt';
-const endpoint = 'http://127.0.0.1:3000';
+import isaac from 'isaac';
+
+const endpoint = 'http://192.168.1.224:3000';
+
+bcrypt.setRandomFallback((len) => {
+	const buf = new Uint8Array(len);
+	return buf.map(() => Math.floor(isaac.random() * 256));
+});
 
 export const createUser = async (name, email, password) => {
     // Use bcrypt to hash the password with 10 rounds of salt
-    const res = await bcrypt.hash(password, 10, function(err, passHash) {
-        console.log('passHash: ' + passHash);
+    const passHash = await new Promise((resolve, reject) => {
+        bcrypt.hash(password, 10, function(err, hash) {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(hash)
+            }
+        });
+    })
 
-        return fetch(
-            `${endpoint}/CreateUser?name=${name}&email=${email}&passHash=${passHash}`,
-            {method: 'POST'}
-        );
-    });
+    // Update database with this new user
+    const res = await fetch(
+        `${endpoint}/CreateUser?name=${name}&email=${email}&passHash=${passHash}`,
+        {method: 'POST'}
+    );
     
-    if (res.statusCode === '200') {
+    if (res.status === 200) {
         console.log('User created succesfully');
         return '200';
     } else {
-        console.log(res.error);
+        const json_res = await res.json();
+        console.log(json_res.error);
         return res.error;
     }
 }

@@ -48,7 +48,7 @@ export default class Signup extends React.Component {
 	}
 
 	handleNormalSignup = async () => {
-		console.log('Doing normal signup. UNIMPLEMENTED');
+		console.log('Doing normal signup');
 		this.setState({ normalSignupLoading: true });
 
 		const res = await userRequest.createUser(
