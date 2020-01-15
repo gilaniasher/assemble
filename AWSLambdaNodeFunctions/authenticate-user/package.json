@@ -9,5 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "neo4j-driver": "*",
+    "parse-neo4j": "*"
   }
 }

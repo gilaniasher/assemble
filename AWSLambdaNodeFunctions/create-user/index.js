@@ -3,14 +3,17 @@ const driver = neo4j.driver('bolt://assemble-neo4j.ml', neo4j.auth.basic('neo4j'
 const session = driver.session();
 
 exports.handler = async (event, context) => {
-    let name = event.queryStringParameters.name;
-    let email = event.queryStringParameters.email;
-    let passHash = event.queryStringParameters.passHash;
+    const name = event.queryStringParameters.name;
+    const email = event.queryStringParameters.email;
+    const passHash = event.queryStringParameters.passHash;
 
     if (name == null || email == null || passHash == null) {
+        session.close();
+        driver.close();
+
         return {
             'statusCode': 400,
-            'error': JSON.stringify('One field was left blank')
+            'body': JSON.stringify('One field was left blank')
         }
     }
 
@@ -38,7 +41,7 @@ exports.handler = async (event, context) => {
 
             return {
                 'statusCode': 400,
-                'error': JSON.stringify(err)
+                'body': JSON.stringify(err)
             }
         })
 };

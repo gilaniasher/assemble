@@ -22,7 +22,7 @@ export default class Login extends React.Component {
 		console.log(this.state.email);
 		console.log(this.state.password);
 
-		const res = await userService.validateUser(
+		const res = await userRequest.validateUser(
 			this.state.email,
 			this.state.password
 		);

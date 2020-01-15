@@ -48,7 +48,7 @@ export const validateUser = async (email, password) => {
     if (res.status === 200) {
         json_res = await res.json();
     } else {
-        return 'Email not found';
+        return 'Something went wrong. Is your email correct?';
     }
 
     // Verify passHash on client side to prevent sending plaintext password through network
