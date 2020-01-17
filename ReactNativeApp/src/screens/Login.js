@@ -1,6 +1,6 @@
 import * as userRequest from '../services/HandleUserRequest';
 import React from 'react';
-import { StyleSheet, View, Image, Text, ImageBackground } from 'react-native';
+import { StyleSheet, View, Image, Text, ImageBackground, Button } from 'react-native';
 import TextIconForm from '../components/TextIconForm';
 import SpinnerButton from 'react-native-spinner-button';
 
@@ -63,6 +63,11 @@ export default class Login extends React.Component {
 
 					<Text style={styles.title}>Assemble your team today</Text>
 				</View>
+
+				<Button
+					title='DEV GO TO HOME BUTTON'
+					onPress={() => this.props.navigation.navigate('Home')}
+				/>
 
 				<View style={styles.formContainer}>
 					<TextIconForm
