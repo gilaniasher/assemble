@@ -1,17 +1,27 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, Image } from 'react-native';
+import Profile from '../components/ProfilePicture';
 
 export default class Home extends React.Component {
 	render() {
-		const { navigation } = this.props;
-
 		return (
-			<View>
+			<ImageBackground
+				source={require('../images/home_backdrop.jpg')}
+				style={{width: '100%', height: '100%'}}
+			>
+			<View style={styles.overlay}>
 				<Text>Home text</Text>
-				<Text>
-					username: {navigation.getParam('username')}
-				</Text>
+				<Profile source={require('../images/sample_profile.jpg')} />
 			</View>
+			</ImageBackground>
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	overlay: {
+		flex: 1,
+		alignItems: 'center',
+		backgroundColor: 'rgba(114, 90, 193, 0.8)',
+	}
+});
