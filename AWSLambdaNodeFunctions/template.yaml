@@ -26,6 +26,18 @@ Resources:
           Properties:
             Path: /AuthenticateUser
             Method: post
+  CreateProjectFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: create-project/
+      Handler: index.handler
+      Runtime: nodejs10.x
+      Events:
+        CreateProject:
+          Type: Api
+          Properties:
+            Path: /CreateProject
+            Method: post
 Outputs:
   CreateUserApi:
     Description: API Gateway CreateUser for Assemble
@@ -45,3 +57,12 @@ Outputs:
   AuthenticateUserRequestIamRole:
     Description: Implicit IAM Role created for AuthenticateUser Request function
     Value: AuthenticateUserFunctionRole.Arn
+  CreateProjectApi:
+    Description: API Gateway CreateProject for Assemble
+    Value: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
+  CreateProjectFunction:
+    Description: CreateProject Lambda Function ARN
+    Value: CreateProjectFunction.Arn
+  CreateProjectRequestIamRole:
+    Description: Implicit IAM Role created for CreateProject Request function
+    Value: CreateProjectFunctionRole.Arn

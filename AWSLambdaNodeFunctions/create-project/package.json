@@ -1,0 +1,14 @@
+{
+  "name": "createprojectassemble",
+  "version": "1.0.0",
+  "description": "Lambda function CreateProject for Assemble",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "neo4j-driver": "*"
+  }
+}
