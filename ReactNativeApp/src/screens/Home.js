@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, ImageBackground, FlatList, Text } from 'react-native';
 import Profile from '../components/ProfilePicture';
 import ProjectTile from '../components/ProjectTile';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const numColumns = 2;
 
@@ -48,8 +49,8 @@ const data = [
 	},
 	{
 		key: 5,
-		title: 'Sample 2',
-		description: 'test 2',
+		title: 'Sample',
+		description: 'test',
 		relation: 'OWNER',
 		numViews: '14'
 	},
@@ -82,6 +83,8 @@ const data = [
 		numViews: '10'
 	},
 ];
+
+const rating = 4.98;
 
 export default class Home extends React.Component {
 	constructor(props) {
@@ -117,6 +120,17 @@ export default class Home extends React.Component {
 			>
 			<View style={styles.overlay}>
 				<Profile source={require('../images/sample_profile.jpg')} />
+
+				<View style={styles.profileHeaderInfo}>
+					<Icon name='star' size={30} style={styles.profileHeaderIcon}/>
+					<Text style={styles.profileHeaderText}>{rating}{" / 5"}</Text>
+				</View>
+
+				<View style={styles.profileHeaderInfo}>
+					<Icon name='file-document-box-multiple' size={30} style={styles.profileHeaderIcon}/>
+					<Text style={styles.profileHeaderText}>{data.length}{" projects"}</Text>
+				</View>
+
 				<View style={styles.horizontalLine} />
 
 				<FlatList
@@ -141,6 +155,16 @@ const styles = StyleSheet.create({
 		alignSelf: 'stretch',
 		borderBottomColor: '#42426A',
 		borderBottomWidth: StyleSheet.hairlineWidth + 1,
-		margin: 30,
+		margin: 15,
+	},
+	profileHeaderInfo: {
+		flexDirection: 'row',
+		marginTop: 5
+	},
+	profileHeaderIcon: {
+		paddingRight: 10,
+	},
+	profileHeaderText: {
+		marginTop: 7,
 	}
 });
