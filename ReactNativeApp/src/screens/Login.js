@@ -65,8 +65,8 @@ export default class Login extends React.Component {
 				</View>
 
 				<Button
-					title='DEV GO TO HOME BUTTON'
-					onPress={() => this.props.navigation.navigate('Home')}
+					title='DEV GO TO TABS BUTTON'
+					onPress={() => this.props.navigation.navigate('Tabs')}
 				/>
 
 				<View style={styles.formContainer}>
