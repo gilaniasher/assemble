@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeScreen from '../screens/Home';
+import SearchScreen from '../screens/Search';
 
 const routeIcons = ({ route }) => ({
     tabBarIcon: ({ focused, color, size }) => {
@@ -28,12 +29,6 @@ const settingsPlaceholder = () => {
     );
 };
 
-const searchPlaceholder = () => {
-    return (
-        <Text>Search placeholder</Text>
-    );
-};
-
 const Tab = createMaterialBottomTabNavigator();
 
 export default function MyTabs() {
@@ -45,7 +40,7 @@ export default function MyTabs() {
             screenOptions={routeIcons}
         >
             <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Search" component={searchPlaceholder} />
+            <Tab.Screen name="Search" component={SearchScreen} />
             <Tab.Screen name="Settings" component={settingsPlaceholder} />
         </Tab.Navigator>
     </NavigationContainer>
