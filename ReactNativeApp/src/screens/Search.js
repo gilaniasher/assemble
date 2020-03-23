@@ -43,17 +43,61 @@ const techTags = [
     }
 ];
 
+const friends = [
+    {
+        id: '92iijs7yta',
+        name: 'Asher',
+    }, 
+    {
+        id: 'a0s0a8ssbsd',
+        name: 'Basher',
+    },
+    {
+        id: '16hbajsabsd',
+        name: 'Casher',
+    }, 
+    {
+        id: 'nahs75a5sg',
+        name: 'Aaron',
+    }, 
+    {
+        id: '667atsas',
+        name: 'Baron',
+    }, 
+    {
+        id: 'hsyasajs',
+        name: 'Caron',
+    }, 
+    {
+        id: 'djsjudksjd',
+        name: 'Daron',
+    }, 
+    {
+        id: 'sdhyaysdj',
+        name: 'Faron',
+    }, 
+    {
+        id: 'suudydjsjd',
+        name: 'Garon',
+    }
+];
+
 export default class Login extends React.Component {
     constructor(props) {
 		super(props)
 
 		this.state = {
-			selectedItems: []
+            selectedTags: [],
+            selectedPeople: []
 		}
 	}
 
-    onSelectedItemsChange = selectedItems => {
-        this.setState({ selectedItems });
+    onSelectedTagsChange = (selectedTags) => {
+        this.setState({ selectedTags });
+    };
+
+    onSelectedPeopleChange = (selectedPeople) => {
+        this.setState({ selectedPeople });
     };
     
     render() {
@@ -63,12 +107,21 @@ export default class Login extends React.Component {
                 <SegmentedControls options={['Projects', 'People']} />
 
                 <ScrollView>
-                    <Text style={styles.techText}>Technologies</Text>
+                    <Text style={styles.headerText}>Technologies</Text>
                     <MultiSelect
                         items={techTags}
                         uniqueKey="id"
-                        onSelectedItemsChange={this.onSelectedItemsChange}
-                        selectedItems={this.state.selectedItems}
+                        onSelectedItemsChange={this.onSelectedTagsChange}
+                        selectedItems={this.state.selectedTags}
+                        altFontFamily="ProximaNova-Light"
+                    />
+
+                    <Text style={styles.headerText}>People</Text>
+                    <MultiSelect
+                        items={friends}
+                        uniqueKey="id"
+                        onSelectedItemsChange={this.onSelectedPeopleChange}
+                        selectedItems={this.state.selectedPeople}
                         altFontFamily="ProximaNova-Light"
                     />
                 </ScrollView>
@@ -86,7 +139,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 10,
         padding: 20
     },
-    techText: {
+    headerText: {
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 18,
