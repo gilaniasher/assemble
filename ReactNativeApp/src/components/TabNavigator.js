@@ -1,10 +1,10 @@
 import React from 'react';
+import { Text } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeScreen from '../screens/Home';
-import SettingsScreen from '../screens/Signup';
 
 const routeIcons = ({ route }) => ({
     tabBarIcon: ({ focused, color, size }) => {
@@ -14,11 +14,25 @@ const routeIcons = ({ route }) => ({
             iconName = focused ? 'home' : 'home-outline';
         } else if (route.name === 'Settings') {
             iconName = focused ? 'settings' : 'settings-outline';
+        } else if (route.name === 'Search') {
+            iconName = focused ? 'file-search' : 'file-search-outline'
         }
 
         return <Icon name={iconName} size={25} color={color} />;
     }
 });
+
+const settingsPlaceholder = () => {
+    return (
+        <Text>Settings placeholder</Text>
+    );
+};
+
+const searchPlaceholder = () => {
+    return (
+        <Text>Search placeholder</Text>
+    );
+};
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -31,7 +45,8 @@ export default function MyTabs() {
             screenOptions={routeIcons}
         >
             <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
+            <Tab.Screen name="Search" component={searchPlaceholder} />
+            <Tab.Screen name="Settings" component={settingsPlaceholder} />
         </Tab.Navigator>
     </NavigationContainer>
   );
