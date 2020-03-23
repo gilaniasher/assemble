@@ -22,23 +22,24 @@ export default class BannerPage extends React.Component {
 
 const styles = StyleSheet.create({
     topBackground: {
-        flex: 1
+        flex: 1,
+        padding: 20
     },
     bannerText: {
         textAlign: 'center',
         color: 'white',
         fontSize: 25,
-        top: '25%'
+        top: '15%'
     },
     bottomBackground: {
-        flex: 4,
-        backgroundColor: 'rgb(240,240,240)'
+        flex: 6,
+        backgroundColor: 'rgb(200,200,200)'
     },
     children: {
         position: 'absolute',
-        top: '13%',
         paddingHorizontal: '3%',
-        paddingBottom: '13%',
+        top: '14%',
+        paddingBottom: '14%',
         width: '100%',
         height: '100%',
         
