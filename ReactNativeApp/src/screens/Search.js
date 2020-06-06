@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import BannerPage from '../components/BannerPage';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import MultiSelect from 'react-native-multiple-select';
+import RangeSlider from 'rn-range-slider';
 
 const techTags = [
     {
@@ -88,7 +89,9 @@ export default class Login extends React.Component {
 
 		this.state = {
             selectedTags: [],
-            selectedPeople: []
+            selectedPeople: [],
+            commitmentLow: 0,
+            commitmentHigh: 10,
 		}
 	}
 
@@ -124,6 +127,18 @@ export default class Login extends React.Component {
                         selectedItems={this.state.selectedPeople}
                         altFontFamily="ProximaNova-Light"
                     />
+
+                    <Text style={styles.headerText}>Project Commitment</Text>
+                    <RangeSlider
+                        style={styles.commitmentRange}
+                        gravity={'center'}
+                        min={0}
+                        max={10}
+                        step={1}
+                        onValueChanged={(low, high, fromUser) => {
+                            this.setState({commitmentLow: low, commitmentHigh: high})
+                        }}
+                    />
                 </ScrollView>
             </View>
             </BannerPage>
@@ -145,5 +160,9 @@ const styles = StyleSheet.create({
         fontSize: 18,
         paddingTop: 30,
         paddingBottom: 20
+    },
+    commitmentRange: {
+        height: 70,
+        width: '100%'
     }
 });
